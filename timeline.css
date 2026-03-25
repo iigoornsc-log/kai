@@ -201,3 +201,103 @@ body {
         transform: translateY(-120vh) rotate(360deg);
     }
 }
+
+* =========================================
+   ESTILOS DO ÚLTIMO SLIDE (CELEBRAÇÃO FINA)
+   ========================================= */
+
+.final-celebration-slide {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Mosaico de Fotos Reais de Fundo */
+.photo-collage-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    /* 4 colunas no PC */
+    grid-template-columns: repeat(4, 1fr); 
+    /* 2 linhas no PC */
+    grid-template-rows: repeat(2, 1fr);    
+    gap: 5px; /* espacinho entre as fotos */
+    padding: 5px;
+}
+
+/* Ajuste do Mosaico para Celular */
+@media (max-width: 768px) {
+    .photo-collage-background {
+        /* 3 colunas no celular */
+        grid-template-columns: repeat(3, 1fr); 
+        /* 3 linhas no celular */
+        grid-template-rows: repeat(3, 1fr);    
+    }
+}
+
+.photo-collage-background img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* garante que as fotos não amassem */
+    opacity: 0.6; /* Deixa as fotos do fundo levemente apagadas */
+}
+
+/* Camada escura por cima das fotos (Overlay) */
+.photo-collage-background .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Fundo escuro (roxo profundo) com transparência */
+    background-color: rgba(26, 11, 28, 0.8); 
+    z-index: 1;
+}
+
+/* Container da Mensagem Central */
+.central-message {
+    position: relative;
+    z-index: 2; /* Fica acima do overlay e das fotos */
+    text-align: center;
+    padding: 30px;
+    max-width: 90%;
+    /* Efeito de vidro fosco suave atrás do texto */
+    background: rgba(255, 255, 255, 0.03); 
+    border-radius: 20px;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Título Elegante */
+.elegant-title {
+    font-family: 'Dancing Script', cursive; /* A fonte elegante que já usamos */
+    color: #ffafbd; /* Rosa claro/rose gold */
+    font-size: 3.5rem; /* Tamanho grande para destaque */
+    margin-bottom: 25px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra para ler melhor */
+}
+
+@media (max-width: 768px) {
+    .elegant-title {
+        font-size: 2.5rem; /* Diminui um pouco no celular */
+    }
+}
+
+/* Subtítulo Delicado */
+.delicate-subtitle {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300; /* Peso leve para ser delicado */
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #e0e0e0; /* Texto quase branco */
+    max-width: 550px;
+    margin: 0 auto;
+    text-align: center;
+}
