@@ -203,141 +203,113 @@ body {
 }
 
 /* =========================================
-   ESTILOS DO ÚLTIMO SLIDE (GRAND FINALE)
-   VERSÃO 3.0 - ISOLAMENTO E BLINDAGEM TOTAL
-   ========================================= */
+   SLIDE 12: REFEITO DO ZERO (BLINDADO)
+   ========================================= */
 
-.final-celebration-slide {
-    position: relative;
-    width: 100vw; 
-    height: 100vh;
-    overflow: hidden; /* Impede que qualquer coisa vaze do slide */
-    display: flex; /* Flex container apenas para centralizar a caixa de texto */
-    justify-content: center;
-    align-items: center;
-    background: #110005; /* Cor de fundo de segurança ultra-escura */
-}
-
-/* 1. Mosaico de Fotos de Fundo (Camada Base Fica no Fundo de tudo) */
-.photo-collage-background {
-    position: absolute; /* Takes mosaic out of flex flow */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    
-    /* REATIVAÇÃO DO GRID */
-    display: grid; 
-    
-    /* PC: 5 colunas para as fotos ficarem menores e mais sutis */
-    grid-template-columns: repeat(5, 1fr); 
-    grid-auto-rows: 1fr;
-    
-    gap: 2px;
-    padding: 2px;
-    z-index: 0; /* Fica no fundo total, atrás de tudo */
-    opacity: 0.5; /* Deixa o mosaico inteiro sutil e desfocado */
-}
-
-/* Ajuste do Mosaico para Celular */
-@media (max-width: 768px) {
-    .photo-collage-background {
-        /* Celular: 3 colunas para o 3D funcionar bem */
-        grid-template-columns: repeat(3, 1fr); 
-    }
-}
-
-/* Imagens do Mosaico (Garante que elas nunca amassem ou estourem) */
-.photo-collage-background img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Corta a foto pra caber perfeitamente na célula */
-    max-width: 100%;
-    max-height: 100%;
-}
-
-/* 2. Camada escura por cima das fotos (Overlay) */
-/* Eu tirei o .overlay do HTML e usei a opacidade do pai, é mais limpo. 
-   Se preferir manter o DIV no HTML, use este código: */
-.photo-collage-background .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* Máscara escura forte para garantir a leitura do textão */
-    background-color: rgba(26, 11, 28, 0.85); 
-    z-index: 1; /* Acima das fotos, abaixo da caixa de texto */
-}
-
-/* 3. Container da Mensagem Central (Caixa de Vidro Independente) */
-.central-message {
-    position: relative; /* Stays centered in the flex flow */
-    z-index: 10; /* Fica acima de tudo, nada atrapalha */
-    text-align: center;
-    padding: 40px;
-    
-    /* BLINDAGEM DE LARGURA: Garante espaço pro textão no PC */
-    width: 90vw; /* Ocupa 90% da largura da VIEWPORT */
-    max-width: 800px; /* Mas não passa de 800px */
-    
-    /* Limite de segurança pro textão não sumir em telas pequenas */
-    max-height: 80vh; 
-    overflow-y: auto; /* Cria rolagem suave dentro da caixa se necessário */
-
-    /* Efeito de Vidro Fosco (Glassmorphism) sedutor */
-    background: rgba(30, 5, 15, 0.5); 
-    border-radius: 20px;
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-/* Ajuste da barra de rolagem da carta (super discreta) */
-.central-message::-webkit-scrollbar {
-    width: 4px;
-}
-.central-message::-webkit-scrollbar-track {
-    background: transparent;
-}
-.central-message::-webkit-scrollbar-thumb {
-    background: rgba(255, 175, 189, 0.4);
-    border-radius: 10px;
-}
-
-/* Título */
-.elegant-title {
-    font-family: 'Dancing Script', cursive;
-    color: #ffafbd; 
-    font-size: 3rem;
-    margin-bottom: 25px;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
-}
-
-/* Subtítulo Delicado (O seu textão) */
-.delicate-subtitle {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 300; 
-    font-size: 1.1rem; 
-    line-height: 1.8;
-    color: #fdfdfd; /* Quase branco */
+/* O Slide em si (Segura tudo no lugar) */
+.slide-final-novo {
+    position: relative;
     width: 100%;
-    margin: 0;
-    text-align: center;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; 
+    background-color: #000; /* Fundo de segurança */
 }
 
-/* Ajustes Finais de Blindagem para Celular */
+/* O Mosaico (Fica grudado no fundo, não empurra nada) */
+.mosaico-fundo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 colunas no PC */
+    grid-auto-rows: 1fr; /* Divide a altura igualitariamente */
+    gap: 2px;
+    z-index: 1;
+}
+
+/* Imagens do Mosaico (Cortam certinho no quadrado) */
+.mosaico-fundo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    display: block; 
+}
+
+/* Película escura por cima das fotos */
+.camada-escura {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(20, 5, 15, 0.85); /* Vinho bem escuro */
+    z-index: 2; 
+}
+
+/* A Carta (Caixa de Vidro que flutua no meio) */
+.carta-vidro {
+    position: relative;
+    z-index: 10; /* Fica acima de todas as fotos */
+    width: 90%;
+    max-width: 800px; /* Largura máxima no PC */
+    max-height: 85vh; /* Altura máxima (nunca passa da tela) */
+    overflow-y: auto; /* Cria barra de rolagem se a tela for pequena */
+    
+    /* Efeito Vidro */
+    background: rgba(255, 255, 255, 0.05); 
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    
+    padding: 40px;
+    text-align: center;
+    box-sizing: border-box; /* A MÁGICA: Impede o padding de estourar a tela */
+}
+
+/* Textos da Carta */
+.titulo-carta {
+    font-family: 'Dancing Script', cursive;
+    color: #ffafbd;
+    font-size: 3rem;
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.texto-carta {
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+}
+
+/* Scrollbar bonitinha para a carta */
+.carta-vidro::-webkit-scrollbar { width: 5px; }
+.carta-vidro::-webkit-scrollbar-track { background: transparent; }
+.carta-vidro::-webkit-scrollbar-thumb { background: rgba(255, 175, 189, 0.5); border-radius: 10px; }
+
+/* Responsividade Celular */
 @media (max-width: 768px) {
-    .central-message {
-        padding: 30px 20px;
-        width: 95vw; /* Almost full width on mobile */
-        max-height: 85vh; /* Usa quase a tela toda no celular */
+    .mosaico-fundo {
+        grid-template-columns: repeat(3, 1fr); /* 3 colunas no celular pra não sumir a foto */
     }
-    .elegant-title {
-        font-size: 2.2rem; /* Título um pouco menor no celular */
-        margin-bottom: 18px;
+    .carta-vidro {
+        padding: 30px 20px; /* Menos borda no celular */
+        width: 95%; /* Ocupa quase toda a largura */
+        max-height: 90vh; /* Ocupa quase toda a altura */
     }
-    .delicate-subtitle {
-        font-size: 1.0rem; /* Letra do textão um tiquinho menor pro celular */
-        line-height: 1.7;
+    .titulo-carta {
+        font-size: 2.2rem;
+    }
+    .texto-carta {
+        font-size: 0.95rem; /* Texto levemente menor */
+        line-height: 1.6;
     }
 }
