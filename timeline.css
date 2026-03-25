@@ -5,14 +5,14 @@
 }
 
 body {
-    background-color: #1a0b1c; /* Um fundo mais escuro para dar contraste de "novo mundo" */
+    background-color: #1a0b1c; 
     font-family: 'Poppins', Arial, sans-serif;
     color: #fff;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden; /* Evita barra de rolagem */
+    overflow: hidden; /* Evita barra de rolagem na página inteira */
 }
 
 /* Tamanho do Slider ocupando a tela toda */
@@ -21,13 +21,48 @@ body {
     height: 100%;
 }
 
+/* =========================================
+   TEMAS DE FUNDO DOS SLIDES
+   ========================================= */
+
+/* Padrão para todos os slides (Roxo escuro elegante) */
 .swiper-slide {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* Adicionando um leve gradiente radial para focar no centro */
     background: radial-gradient(circle, #2d142c 0%, #1a0b1c 100%);
+    transition: background 0.8s ease; /* Transição suave de cor */
 }
+
+/* Tema: Safadeza Light (Página 7) - Um vinho mais quente e sedutor */
+.swiper-slide.theme-sexy-light {
+    background: radial-gradient(circle, #5c1024 0%, #1c050b 100%);
+}
+.theme-sexy-light .text-box {
+    border-color: rgba(255, 100, 130, 0.3);
+    box-shadow: 0 0 20px rgba(255, 50, 80, 0.1);
+}
+.theme-sexy-light h2 {
+    color: #ff6b81 !important; /* Um tom de rosa/vermelho mais quente pro título */
+}
+
+/* Tema: Safadeza Pesada (Página 8) - Vermelho escuro, intenso, pegada "quarto escuro" */
+.swiper-slide.theme-sexy-heavy {
+    background: radial-gradient(circle, #4a0008 0%, #0a0000 100%);
+}
+.theme-sexy-heavy .text-box {
+    background: rgba(40, 0, 5, 0.6); /* Fundo da caixa um pouco mais avermelhado */
+    border-color: rgba(255, 0, 0, 0.4);
+    box-shadow: 0 0 30px rgba(255, 0, 0, 0.2);
+}
+.theme-sexy-heavy h2 {
+    color: #ff3333 !important; /* Vermelho forte */
+    text-shadow: 0 0 10px rgba(255,0,0,0.5); /* Brilho vermelho no título */
+}
+
+/* =========================================
+   ESTRUTURA DO CONTEÚDO
+   ========================================= */
 
 .slide-content {
     display: flex;
@@ -36,59 +71,91 @@ body {
     text-align: center;
     max-width: 800px;
     padding: 20px;
-    gap: 30px;
+    gap: 20px;
+    height: 100vh;
+    justify-content: center;
 }
 
 /* Estilo das Imagens */
 .slide-content img {
-    max-height: 50vh;
+    max-height: 40vh; /* Reduzi um pouquinho para o texto grande caber melhor */
     width: auto;
-    max-width: 100%;
+    max-width: 90%;
     border-radius: 15px;
     box-shadow: 0 15px 35px rgba(0,0,0,0.5);
     border: 4px solid rgba(255, 255, 255, 0.1);
     transition: transform 0.3s ease;
+    object-fit: cover;
 }
 
 .slide-content img:hover {
     transform: scale(1.02);
 }
 
-/* Estilo dos Textos */
+/* =========================================
+   CAIXA DE TEXTO COM ROLAGEM MÁGICA
+   ========================================= */
 .text-box {
     background: rgba(255, 255, 255, 0.05);
     padding: 25px;
     border-radius: 15px;
     backdrop-filter: blur(10px); /* Efeito de vidro fosco */
     border: 1px solid rgba(255, 255, 255, 0.1);
+    width: 90%;
+    max-width: 600px;
+    
+    /* Configuração para o texto não vazar da tela */
+    max-height: 35vh; /* A caixa ocupa no máximo 35% da altura da tela */
+    overflow-y: auto; /* Cria a rolagem se o texto passar do tamanho */
+}
+
+/* Customizando a barrinha de rolagem pra não ficar feia */
+.text-box::-webkit-scrollbar {
+    width: 6px;
+}
+.text-box::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+.text-box::-webkit-scrollbar-thumb {
+    background: rgba(255, 175, 189, 0.5);
+    border-radius: 10px;
+}
+.text-box::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 175, 189, 0.8);
 }
 
 .text-box h2 {
     font-family: 'Dancing Script', cursive;
     color: #ffafbd;
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     margin-bottom: 15px;
 }
 
 .text-box p {
-    font-size: 1.1rem;
+    font-size: 1rem;
     line-height: 1.6;
     margin-bottom: 15px;
     color: #e0e0e0;
+    text-align: justify; /* Deixa o texto retinho, com cara de livro real */
 }
 
 .date {
     display: inline-block;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: #ff8787;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 2px;
+    margin-top: 10px;
 }
 
-/* Customizando as cores do Swiper */
+/* =========================================
+   BOTÕES DO SWIPER
+   ========================================= */
 .swiper-button-next, .swiper-button-prev {
     color: #ffafbd !important;
+    transform: scale(0.7); /* Deixa as setas um pouco menores */
 }
 
 .swiper-pagination-bullet-active {
