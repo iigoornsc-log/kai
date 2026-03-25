@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const slideAtual = swiper.activeIndex;
 
         // Slide 7 (índice 6) e Slide 8 (índice 7)
-        if (slideAtual === 6 || slideAtual === 7) {
+        if (slideAtual === 7 || slideAtual === 8) {
             mainMusic.pause();
             sexyMusic.play();
         } else {
