@@ -13,6 +13,20 @@
 </head>
 <body>
 
+    <div id="musicControls" style="position: fixed; top: 20px; right: 20px; z-index: 1000;">
+        <button id="musicToggle" style="background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,175,189,0.5); padding: 8px 15px; border-radius: 20px; cursor: pointer; backdrop-filter: blur(5px); transition: all 0.3s;">
+            🎵 Tocar Música
+        </button>
+    </div>
+
+    <audio id="bgMusicMain" loop>
+        <source src="musicas/romantica.mp3" type="audio/mpeg">
+    </audio>
+    
+    <audio id="bgMusicSexy" loop>
+        <source src="musicas/sexy.mp3" type="audio/mpeg">
+    </audio>
+
     <div class="swiper mySwiper">
         <div class="swiper-wrapper">
             
