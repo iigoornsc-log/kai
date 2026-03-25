@@ -161,3 +161,43 @@ body {
 .swiper-pagination-bullet-active {
     background: #ffafbd !important;
 }
+
+/* =========================================
+   EFEITO 3D - EMOJIS FLUTUANTES NO FUNDO
+   ========================================= */
+
+/* Garante que o conteúdo principal fique na frente dos emojis */
+.slide-content {
+    position: relative;
+    z-index: 2; 
+}
+
+/* O container invisível que segura os emojis no fundo de cada slide */
+.bg-emojis-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Pra não atrapalhar o clique/arraste do Swiper */
+    z-index: 0; /* Fica no fundo de tudo */
+    overflow: hidden;
+}
+
+/* O estilo base de cada emoji */
+.floating-emoji {
+    position: absolute;
+    bottom: -10%; /* Começa um pouco abaixo da tela */
+    animation: floatUp linear infinite;
+    /* O JS vai injetar o tamanho, desfoque e opacidade dinamicamente! */
+}
+
+/* A animação de subir girando levemente */
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+    100% {
+        transform: translateY(-120vh) rotate(360deg);
+    }
+}
