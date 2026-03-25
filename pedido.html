@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Área Restrita 🔒</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style-home.css">
+    
+    <style>
+        /* Estilos EXCLUSIVOS desta página do Enigma */
+        body {
+            overflow: hidden; /* Remove rolagem */
+        }
+
+        .secret-room {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            /* Um roxo escuro ainda mais profundo focado no centro */
+            background: radial-gradient(circle, #2a0835 0%, #0a030d 100%);
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* O Cadeadão Branco */
+        .big-lock {
+            font-size: 5rem;
+            color: #ffffff;
+            text-shadow: 0 0 25px rgba(255, 255, 255, 0.6);
+            margin-bottom: 40px;
+            animation: floatLock 3s ease-in-out infinite;
+        }
+
+        /* A Caixa do Enigma */
+        .enigma-box {
+            background: rgba(10, 3, 13, 0.7);
+            border: 1px solid rgba(255, 51, 102, 0.4);
+            padding: 40px;
+            border-radius: 15px;
+            max-width: 600px;
+            box-shadow: 0 0 40px rgba(255, 51, 102, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .enigma-title {
+            color: #ff3366;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .enigma-text {
+            font-size: 1.1rem;
+            color: #e0e0e0;
+            margin-bottom: 30px;
+            line-height: 1.7;
+        }
+
+        /* O Código Binário Hacker */
+        .binary-code {
+            font-family: 'Share Tech Mono', monospace;
+            color: #b537f2;
+            font-size: 1.3rem;
+            letter-spacing: 3px;
+            word-wrap: break-word;
+            text-shadow: 0 0 10px rgba(181, 55, 242, 0.5);
+        }
+
+        /* Botão Elegante de Voltar */
+        .btn-voltar {
+            margin-top: 50px;
+            padding: 12px 30px;
+            background: transparent;
+            border: 1px solid #b537f2;
+            color: #b537f2;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-voltar:hover {
+            background: #b537f2;
+            color: #fff;
+            box-shadow: 0 0 20px rgba(181, 55, 242, 0.5);
+        }
+
+        /* Animação do Cadeado flutuando */
+        @keyframes floatLock {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-glow glow-1"></div>
+    <div class="bg-glow glow-2"></div>
+
+    <div class="secret-room">
+        <i class="fa-solid fa-lock big-lock"></i>
+        
+        <div class="enigma-box">
+            <h2 class="enigma-title">Acesso Restrito</h2>
+            <p class="enigma-text">O tempo exato ainda está selado. Mas para quem sabe ler as estrelas, a resposta já está escrita:<br><br><strong>A lua testemunhará o futuro na mesma fase em que abençoou o nosso primeiro beijo.</strong></p>
+            <p class="binary-code">01010110 01100101 01101101 00100000 01100001 01101001</p>
+        </div>
+
+        <a href="home.html" class="btn-voltar"><i class="fa-solid fa-arrow-left"></i> Voltar ao Menu</a>
+    </div>
+
+</body>
+</html>
