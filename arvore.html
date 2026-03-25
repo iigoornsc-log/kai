@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Árvore de Skills 🌳</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style-home.css">
+    <link rel="stylesheet" href="style-arvore.css">
+</head>
+<body>
+
+    <div class="bg-glow glow-1"></div>
+    <div class="bg-glow glow-2"></div>
+
+    <nav class="navbar">
+        <div class="logo">I <span class="heart">❤️</span> K</div>
+        <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="arvore.html" class="active">Nosso RPG</a></li>
+        </ul>
+    </nav>
+
+    <div class="tree-header">
+        <h1>Árvore de Habilidades</h1>
+        <p>A nossa jornada épica. Cada conquista nos torna mais fortes.</p>
+    </div>
+
+    <div id="arvore-container" class="tree-container"></div>
+
+    <script src="quests.js"></script>
+    <script>
+        // ESSE SCRIPT LÊ O SEU "BANCO DE DADOS" E DESENHA O SITE SOZINHO
+        const container = document.getElementById('arvore-container');
+
+        arvoreDeSkills.forEach((fase, index) => {
+            let missoesHTML = '';
+            
+            fase.missoes.forEach(missao => {
+                const isUnlocked = missao.status === "desbloqueado";
+                const icone = isUnlocked ? '<i class="fa-solid fa-check"></i>' : '<i class="fa-solid fa-lock"></i>';
+                const classeStatus = isUnlocked ? 'unlocked' : 'locked';
+
+                missoesHTML += `
+                    <div class="skill-node ${classeStatus}">
+                        <div class="skill-icon">${icone}</div>
+                        <div class="skill-info">
+                            <h3>${missao.titulo}</h3>
+                            <p>${missao.desc}</p>
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML += `
+                <div class="tier-section">
+                    <div class="tier-title">
+                        <h2><i class="fa-solid fa-khanda"></i> ${fase.nivel}</h2>
+                        <p>${fase.descricao}</p>
+                    </div>
+                    <div class="tier-nodes">
+                        ${missoesHTML}
+                    </div>
+                </div>
+            `;
+        });
+    </script>
+</body>
+</html>
