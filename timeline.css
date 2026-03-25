@@ -1,0 +1,96 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #1a0b1c; /* Um fundo mais escuro para dar contraste de "novo mundo" */
+    font-family: 'Poppins', Arial, sans-serif;
+    color: #fff;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Evita barra de rolagem */
+}
+
+/* Tamanho do Slider ocupando a tela toda */
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Adicionando um leve gradiente radial para focar no centro */
+    background: radial-gradient(circle, #2d142c 0%, #1a0b1c 100%);
+}
+
+.slide-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 800px;
+    padding: 20px;
+    gap: 30px;
+}
+
+/* Estilo das Imagens */
+.slide-content img {
+    max-height: 50vh;
+    width: auto;
+    max-width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+    border: 4px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.slide-content img:hover {
+    transform: scale(1.02);
+}
+
+/* Estilo dos Textos */
+.text-box {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 25px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px); /* Efeito de vidro fosco */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.text-box h2 {
+    font-family: 'Dancing Script', cursive;
+    color: #ffafbd;
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+.text-box p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    color: #e0e0e0;
+}
+
+.date {
+    display: inline-block;
+    font-size: 0.9rem;
+    color: #ff8787;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Customizando as cores do Swiper */
+.swiper-button-next, .swiper-button-prev {
+    color: #ffafbd !important;
+}
+
+.swiper-pagination-bullet-active {
+    background: #ffafbd !important;
+}
