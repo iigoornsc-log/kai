@@ -236,4 +236,86 @@ body {
 /* Ajuste do Mosaico para Celular */
 @media (max-width: 768px) {
     .photo-collage-background {
-        /*
+        /* Celular: 3 colunas é o ideal */
+        grid-template-columns: repeat(3, 1fr); 
+        /* Mantém as linhas dinâmicas */
+        grid-auto-rows: 1fr;
+    }
+}
+
+.photo-collage-background img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Garante que a foto preencha o espaço sem amassar */
+    opacity: 0.6; /* Levemente apagadas pro texto brilhar */
+    /* NOVA REGRA: Impede que a foto force o grid a crescer */
+    max-height: 100%; 
+}
+
+/* Camada escura (Overlay) */
+.photo-collage-background .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(26, 11, 28, 0.8); /* Roxo profundo */
+    z-index: 1;
+}
+
+/* Container da Mensagem Central */
+.central-message {
+    position: relative;
+    z-index: 2; /* Acima do mosaico */
+    text-align: center;
+    padding: 30px;
+    width: 90%;
+    max-width: 600px; /* Limita a largura no PC */
+    /* NOVA REGRA: Impede a caixa de texto de ocupar a tela toda */
+    max-height: 40vh; /* Ocupa no máximo 40% da altura da tela */
+    overflow-y: auto; /* Se o texto for muito grande, cria rolagem na caixa */
+
+    background: rgba(255, 255, 255, 0.03); 
+    border-radius: 20px;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Ajuste da barra de rolagem da mensagem central (super discreta) */
+.central-message::-webkit-scrollbar {
+    width: 4px;
+}
+.central-message::-webkit-scrollbar-track {
+    background: transparent;
+}
+.central-message::-webkit-scrollbar-thumb {
+    background: rgba(255, 175, 189, 0.3);
+    border-radius: 10px;
+}
+
+/* Título Elegante */
+.elegant-title {
+    font-family: 'Dancing Script', cursive;
+    color: #ffafbd; 
+    font-size: 3rem; /* Ajustei pra ser um pouco menor e mais elegante no PC */
+    margin-bottom: 25px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 768px) {
+    .elegant-title {
+        font-size: 2.2rem; /* Menor no celular */
+    }
+}
+
+/* Subtítulo Delicado */
+.delicate-subtitle {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300; 
+    font-size: 1.05rem; /* Ajuste fino de tamanho */
+    line-height: 1.6;
+    color: #e0e0e0;
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
+}
