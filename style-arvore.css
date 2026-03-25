@@ -1,0 +1,148 @@
+/* =========================================
+   ESTILOS DA ÁRVORE DE SKILLS (RPG)
+   ========================================= */
+
+.tree-header {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.tree-header h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3.5rem;
+    color: #ff3366;
+    text-shadow: 0 0 15px rgba(255, 51, 102, 0.5);
+    margin-bottom: 10px;
+}
+
+.tree-header p {
+    color: #aaa;
+    font-size: 1.1rem;
+    font-family: 'Share Tech Mono', monospace; /* Fonte meio gamer */
+}
+
+.tree-container {
+    max-width: 900px;
+    margin: 0 auto 100px;
+    padding: 0 20px;
+}
+
+/* Os Níveis (Tiers) */
+.tier-section {
+    margin-bottom: 60px;
+    position: relative;
+}
+
+.tier-title {
+    background: rgba(181, 55, 242, 0.1);
+    border-left: 4px solid var(--neon-purple);
+    padding: 15px 20px;
+    border-radius: 0 10px 10px 0;
+    margin-bottom: 30px;
+}
+
+.tier-title h2 {
+    color: #fff;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.tier-title p {
+    color: #999;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+/* O Grid de Missões */
+.tier-nodes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding-left: 20px; /* Dá um espacinho da borda */
+    border-left: 2px dashed rgba(255, 255, 255, 0.1); /* Linha vertical conectando os poderes */
+    margin-left: 10px;
+}
+
+/* A Missão em si (O Nó da Árvore) */
+.skill-node {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    border-radius: 12px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+/* A linha horizontal que liga o nó à linha principal */
+.skill-node::before {
+    content: '';
+    position: absolute;
+    left: -20px;
+    top: 50%;
+    width: 20px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.skill-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+    transition: all 0.3s;
+}
+
+.skill-info h3 {
+    font-size: 1.1rem;
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+.skill-info p {
+    font-size: 0.85rem;
+    color: #888;
+}
+
+/* STATUS: DESBLOQUEADO (NEON) */
+.skill-node.unlocked {
+    background: rgba(181, 55, 242, 0.05);
+    border-color: rgba(181, 55, 242, 0.3);
+}
+
+.skill-node.unlocked .skill-icon {
+    background: var(--neon-purple);
+    color: #fff;
+    box-shadow: 0 0 15px var(--neon-purple);
+}
+
+.skill-node.unlocked::before {
+    background: var(--neon-purple); /* Acende a linha conector */
+}
+
+/* STATUS: BLOQUEADO (ESCURO/CINZA) */
+.skill-node.locked {
+    opacity: 0.5;
+}
+
+.skill-node.locked .skill-icon {
+    background: #222;
+    color: #555;
+    border: 1px solid #444;
+}
+
+.skill-node.locked:hover {
+    opacity: 0.8;
+    border-color: rgba(255, 51, 102, 0.3);
+}
+.skill-node.locked:hover .skill-icon {
+    color: #ff3366;
+}
