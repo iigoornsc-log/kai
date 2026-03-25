@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quem Somos? 👩‍❤️‍👨</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style-home.css">
+    
+    <style>
+        /* =========================================
+           ESTILOS EXCLUSIVOS DA PÁGINA "SOBRE NÓS"
+           ========================================= */
+        .sobre-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 5%;
+        }
+
+        .page-title {
+            text-align: center;
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            color: #fff;
+            margin-bottom: 40px;
+            text-shadow: 0 0 15px rgba(255, 51, 102, 0.5);
+        }
+
+        /* O Grid que deixa os cartões lado a lado no PC e empilha no celular */
+        .profiles-wrapper {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        /* O Cartão de Perfil (Caixa de Vidro Alta) */
+        .profile-card {
+            background: rgba(15, 5, 20, 0.6);
+            border-radius: 25px;
+            padding: 40px 30px;
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Temas Individuais (Neon Rosa pra ela, Neon Roxo pra você) */
+        .card-kailane {
+            box-shadow: 0 10px 40px rgba(255, 51, 102, 0.15), inset 0 0 20px rgba(255, 51, 102, 0.05);
+            border-top: 2px solid rgba(255, 51, 102, 0.3);
+        }
+        .card-igor {
+            box-shadow: 0 10px 40px rgba(181, 55, 242, 0.15), inset 0 0 20px rgba(181, 55, 242, 0.05);
+            border-top: 2px solid rgba(181, 55, 242, 0.3);
+        }
+
+        /* Cabeçalho do Cartão (Foto e Nome) */
+        .profile-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 20px;
+        }
+
+        .profile-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 4px solid #fff;
+        }
+        .card-kailane .profile-photo { box-shadow: 0 0 20px rgba(255, 51, 102, 0.6); border-color: #ff3366; }
+        .card-igor .profile-photo { box-shadow: 0 0 20px rgba(181, 55, 242, 0.6); border-color: #b537f2; }
+
+        .profile-name {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        /* Os 5 Blocos de Informação */
+        .info-block {
+            margin-bottom: 25px;
+        }
+
+        .info-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .card-kailane .info-title { color: #ff6b81; }
+        .card-igor .info-title { color: #c96bf2; }
+
+        .info-text {
+            font-size: 0.95rem;
+            color: #dcdcdc;
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="bg-glow glow-1"></div>
+    <div class="bg-glow glow-2"></div>
+
+    <nav class="navbar">
+        <div class="logo">I <span class="heart">❤️</span> K</div>
+        <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="timeline.html">Nossa História</a></li>
+            <li><a href="sobre.html" class="active">Sobre Nós</a></li>
+        </ul>
+    </nav>
+
+    <div class="sobre-container">
+        <h1 class="page-title">Nosso Raio-X</h1>
+
+        <div class="profiles-wrapper">
+            
+            <div class="profile-card card-kailane">
+                <div class="profile-header">
+                    <img src="fotos/kailane.jpg" alt="Kailane" class="profile-photo">
+                    <h2 class="profile-name">Kailane</h2>
+                </div>
+
+                <div class="info-block">
+                    <div class="info-title"><i class="fa-solid fa-eye"></i> Como Igor me vê</div>
+                    <div class="info-text">"A mulher mais forte, parceira e linda que eu já conheci. Um anjo que apareceu no meu caos e trouxe paz. Ela é minha melhor amiga e o grande amor da minha vida, tudo na mesma pessoa."</div>
+                </div>
+
+                <div class="info-block">
+                    <div class="info-title"><i class="fa-solid fa-utensils"></i> Comida Favorita</div>
+                    <div class="info-text">Aqui você coloca o prato preferido dela (Ex: Aquela pizza de sexta-feira, sushi, ou um bom strogonoff).</div>
+                </div>
+
+                <div class="info-block">
+                    <div class="info-title"><i class="fa-solid fa-map-location-dot"></i> Passeio Favorito</div>
+                    <div class="info-text">Aqui você coloca o que ela ama fazer (Ex: Ficar deitada de conchinha assistindo filme, sair pra jantar, ir à praia).</div>
+                </div>
+
+                <div class="info-block">
+                    <div class="info-title"><i class="fa-solid fa-cloud"></i> Maior Sonho</div>
+                    <div class="info-text">Aqui você coloca o sonho dela (Ex: Se formar, viajar o mundo, construir a nossa família).</div>
+                </div>
+
+                <div class="info-block">
+                    <div class="info-title"><i class="fa-solid fa-heart"></i> O que mais ama no Igor</div>
+                    <div class="info-text">"O jeito que ele me protege, como ele sempre lembra dos detalhes e a forma como ele me faz rir mesmo quando eu quero ficar brava."</div>
+                </div>
+            </div>
+
+            <div class="profile-card card-igor">
+                <div class="profile-header">
+                    <img src="fotos/igor.jpg" alt="Igor" class="profile-photo">
+                    <h2 class="profile-name">Igor</h2>
+                </div>
+
+                <div class="info-block">
+                    <div class="info-title"><i class="fa-solid fa-eye"></i> Como Kailane me vê</div>
+                    <div class="info-text">"O homem que cumpre promessas. Aquele que observava de longe e que hoje me faz sentir a mulher mais amada e segura do mundo. Meu porto seguro."</div>
+                </div>
+
+                <div class="info-block">
+                    <div class="info-title"><i class="fa-solid fa-utensils"></i> Comida Favorita</div>
+                    <div class="info-text">Coloca a sua comida preferida aqui (Ex: Aquele lanche monstro, churrasco, etc).</div>
+                </div>
+
+                <div class="info-block">
+                    <div class="info-title"><i class="fa-solid fa-map-location-dot"></i> Passeio Favorito</div>
+                    <div class="info-text">Seu rolê favorito (Ex: Criar sites pra minha namorada, jogar um game, viajar).</div>
+                </div>
+
+                <div class="info-block">
+                    <div class="info-title"><i class="fa-solid fa-cloud"></i> Maior Sonho</div>
+                    <div class="info-text">O seu sonho pessoal ou de vocês (Ex: Dar o melhor pra nós dois e ser gigante na minha carreira).</div>
+                </div>
+
+                <div class="info-block">
+                    <div class="info-title"><i class="fa-solid fa-heart"></i> O que mais ama na Kailane</div>
+                    <div class="info-text">"A energia boa dela, as curvas que me deixam louco e o coração gigante que sempre esteve comigo, até nas piores tempestades."</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
