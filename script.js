@@ -173,19 +173,19 @@ loveMeter.addEventListener('input', () => {
 window.addEventListener('DOMContentLoaded', setInitialPosition);
 window.addEventListener('load', setInitialPosition);
 
-// Celebration function
+// Celebration function - Modificada para transição de "Novo Mundo"
 function celebrate() {
+    // 1. Esconde as perguntas
     document.querySelectorAll('.question-section').forEach(q => q.classList.add('hidden'));
-    const celebration = document.getElementById('celebration');
-    celebration.classList.remove('hidden');
     
-    // Set celebration messages
-    document.getElementById('celebrationTitle').textContent = config.celebration.title;
-    document.getElementById('celebrationMessage').textContent = config.celebration.message;
-    document.getElementById('celebrationEmojis').textContent = config.celebration.emojis;
-    
-    // Create heart explosion effect
-    createHeartExplosion();
+    // 2. Cria um efeito de fade out na tela inteira
+    document.body.style.transition = "opacity 2.5s ease-in-out";
+    document.body.style.opacity = "0";
+
+    // 3. Após 2.5 segundos (quando a tela estiver totalmente invisível), redireciona
+    setTimeout(() => {
+        window.location.href = "timeline.html"; // Esta será a página da nossa linha do tempo
+    }, 2500);
 }
 
 // Create heart explosion animation
