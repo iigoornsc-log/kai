@@ -204,94 +204,104 @@ body {
 
 /* =========================================
    ESTILOS DO ÚLTIMO SLIDE (GRAND FINALE)
-   VERSÃO 2.0 - BLINDADA CONTRA BUGS
+   VERSÃO 3.0 - ISOLAMENTO E BLINDAGEM TOTAL
    ========================================= */
 
 .final-celebration-slide {
     position: relative;
-    /* Força o slide a ter a largura e altura da tela exata (viewport) */
-    width: 100vw !important; 
-    height: 100vh !important;
-    overflow: hidden; /* Impede vazamentos */
-    display: flex;
+    width: 100vw; 
+    height: 100vh;
+    overflow: hidden; /* Impede que qualquer coisa vaze do slide */
+    display: flex; /* Flex container apenas para centralizar a caixa de texto */
     justify-content: center;
     align-items: center;
-    background: #1a0b1c; /* Cor de fundo de segurança */
+    background: #110005; /* Cor de fundo de segurança ultra-escura */
 }
 
-/* Mosaico de Fotos de Fundo (Blindado) */
+/* 1. Mosaico de Fotos de Fundo (Camada Base Fica no Fundo de tudo) */
 .photo-collage-background {
-    position: absolute;
+    position: absolute; /* Takes mosaic out of flex flow */
     top: 0;
     left: 0;
-    width: 100% !important; /* Força largura total do slide */
-    height: 100% !important; /* Força altura total do slide */
+    width: 100%;
+    height: 100%;
     
-    /* REATIVAÇÃO DO GRID COM FORÇA BRUTA */
-    display: grid !important; 
+    /* REATIVAÇÃO DO GRID */
+    display: grid; 
     
-    /* PC: 4 colunas bem definidas */
-    grid-template-columns: repeat(4, 1fr) !important; 
+    /* PC: 5 colunas para as fotos ficarem menores e mais sutis */
+    grid-template-columns: repeat(5, 1fr); 
+    grid-auto-rows: 1fr;
     
-    /* Automatiza o número de linhas para caber as fotos */
-    grid-auto-rows: 1fr !important;
-    
-    gap: 3px;
-    padding: 3px;
-    z-index: 1; /* Fica no fundo */
+    gap: 2px;
+    padding: 2px;
+    z-index: 0; /* Fica no fundo total, atrás de tudo */
+    opacity: 0.5; /* Deixa o mosaico inteiro sutil e desfocado */
 }
 
 /* Ajuste do Mosaico para Celular */
 @media (max-width: 768px) {
     .photo-collage-background {
-        /* Celular: 3 colunas é o ideal para o 3D */
-        grid-template-columns: repeat(3, 1fr) !important; 
+        /* Celular: 3 colunas para o 3D funcionar bem */
+        grid-template-columns: repeat(3, 1fr); 
     }
 }
 
-/* As imagens (Blindadas) */
+/* Imagens do Mosaico (Garante que elas nunca amassem ou estourem) */
 .photo-collage-background img {
-    /* MÁGICA DO GRID: A imagem TEM o tamanho da célula */
-    width: 100% !important; 
-    height: 100% !important;
-    object-fit: cover !important; /* Corta a foto pra caber, sem amassar */
-    
-    /* Impede que a foto native force o grid a expandir */
-    max-width: 100% !important;
-    max-height: 100% !important;
-    
-    opacity: 0.6; /* Levemente apagadas pro texto brilhar */
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Corta a foto pra caber perfeitamente na célula */
+    max-width: 100%;
+    max-height: 100%;
 }
 
-/* Camada escura por cima das fotos (Overlay) */
+/* 2. Camada escura por cima das fotos (Overlay) */
+/* Eu tirei o .overlay do HTML e usei a opacidade do pai, é mais limpo. 
+   Se preferir manter o DIV no HTML, use este código: */
 .photo-collage-background .overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(26, 11, 28, 0.82); /* Roxo profundo sedutor */
-    z-index: 2; /* Acima das fotos, abaixo do texto */
+    /* Máscara escura forte para garantir a leitura do textão */
+    background-color: rgba(26, 11, 28, 0.85); 
+    z-index: 1; /* Acima das fotos, abaixo da caixa de texto */
 }
 
-/* Container da Mensagem Central (Caixa de Vidro Elegante) */
+/* 3. Container da Mensagem Central (Caixa de Vidro Independente) */
 .central-message {
-    position: relative;
-    z-index: 3; /* No topo de tudo, nada atrapalha */
-    text-align: center;
+    position: relative; /* Stays centered in the flex flow */
+    z-index: 10; /* Fica acima de tudo, nada atrapalha */
+    text-align: center;
     padding: 40px;
-    width: 90%;
-    max-width: 750px; /* Largura perfeita pro textão no PC */
+    
+    /* BLINDAGEM DE LARGURA: Garante espaço pro textão no PC */
+    width: 90vw; /* Ocupa 90% da largura da VIEWPORT */
+    max-width: 800px; /* Mas não passa de 800px */
     
     /* Limite de segurança pro textão não sumir em telas pequenas */
     max-height: 80vh; 
     overflow-y: auto; /* Cria rolagem suave dentro da caixa se necessário */
 
-    /* Efeito de Vidro Fosco (Glassmorphism) aprimorado */
-    background: rgba(35, 15, 30, 0.5); 
+    /* Efeito de Vidro Fosco (Glassmorphism) sedutor */
+    background: rgba(30, 5, 15, 0.5); 
     border-radius: 20px;
-    backdrop-filter: blur(10px); /* Borrão mais forte no fundo pra ler super bem */
+    backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Ajuste da barra de rolagem da carta (super discreta) */
+.central-message::-webkit-scrollbar {
+    width: 4px;
+}
+.central-message::-webkit-scrollbar-track {
+    background: transparent;
+}
+.central-message::-webkit-scrollbar-thumb {
+    background: rgba(255, 175, 189, 0.4);
+    border-radius: 10px;
 }
 
 /* Título */
@@ -309,21 +319,25 @@ body {
     font-weight: 300; 
     font-size: 1.1rem; 
     line-height: 1.8;
-    color: #f8f8f8;
+    color: #fdfdfd; /* Quase branco */
+    width: 100%;
     margin: 0;
+    text-align: center;
 }
 
-/* Ajustes Finais para Celular */
+/* Ajustes Finais de Blindagem para Celular */
 @media (max-width: 768px) {
     .central-message {
         padding: 30px 20px;
+        width: 95vw; /* Almost full width on mobile */
         max-height: 85vh; /* Usa quase a tela toda no celular */
     }
     .elegant-title {
-        font-size: 2.3rem; /* Título um pouco menor no celular */
+        font-size: 2.2rem; /* Título um pouco menor no celular */
         margin-bottom: 18px;
     }
     .delicate-subtitle {
-        font-size: 1.0rem; /* Letra do textão um tiquinho menor pro celular ler melhor */
+        font-size: 1.0rem; /* Letra do textão um tiquinho menor pro celular */
+        line-height: 1.7;
     }
 }
