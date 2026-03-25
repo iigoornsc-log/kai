@@ -263,22 +263,68 @@ body {
     z-index: 1;
 }
 
-/* Container da Mensagem Central */
+/* Container da Mensagem Central (Agora adaptado para textos longos) */
 .central-message {
-    position: relative;
-    z-index: 2; /* Acima do mosaico */
-    text-align: center;
-    padding: 30px;
-    width: 90%;
-    max-width: 600px; /* Limita a largura no PC */
-    /* NOVA REGRA: Impede a caixa de texto de ocupar a tela toda */
-    max-height: 40vh; /* Ocupa no máximo 40% da altura da tela */
-    overflow-y: auto; /* Se o texto for muito grande, cria rolagem na caixa */
+    position: relative;
+    z-index: 2; /* Acima do mosaico */
+    text-align: center;
+    padding: 35px 30px;
+    width: 90%;
+    max-width: 750px; /* Caixinha mais larga para caber a carta */
+    max-height: 85vh; /* Agora pode ocupar até 85% da tela sem estourar */
+    overflow-y: auto; /* Se a tela do celular for pequena, cria uma rolagem suave só no texto */
+    
+    /* Efeito "Carta de Vidro" um pouco mais forte pra dar leitura */
+    background: rgba(25, 10, 20, 0.4); /* Fundo um pouco mais escurinho */
+    border-radius: 20px;
+    backdrop-filter: blur(8px); /* Borrão mais forte no fundo pra ler melhor */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    
+    /* Centraliza o texto perfeitamente dentro da caixa */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
-    background: rgba(255, 255, 255, 0.03); 
-    border-radius: 20px;
-    backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+/* Ajuste da barra de rolagem (caso o celular seja bem pequeno) */
+.central-message::-webkit-scrollbar {
+    width: 4px;
+}
+.central-message::-webkit-scrollbar-track {
+    background: transparent;
+}
+.central-message::-webkit-scrollbar-thumb {
+    background: rgba(255, 175, 189, 0.5);
+    border-radius: 10px;
+}
+
+/* Subtítulo Delicado (O seu textão) */
+.delicate-subtitle {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300; 
+    font-size: 1.1rem; 
+    line-height: 1.7; /* Espaço entre as linhas pra ficar elegante */
+    color: #f8f8f8; /* Branco bem clarinho */
+    width: 100%;
+    margin: 0;
+    text-align: center;
+}
+
+/* Ajustes mágicos para a carta caber perfeita no Celular */
+@media (max-width: 768px) {
+    .central-message {
+        padding: 25px 15px; /* Menos espaço sobrando nas bordas no celular */
+        max-height: 90vh; /* Aproveita o máximo da telinha */
+    }
+    .elegant-title {
+        font-size: 2rem; /* Título um pouco menor pra dar espaço pra carta */
+        margin-bottom: 15px;
+    }
+    .delicate-subtitle {
+        font-size: 0.95rem; /* Letra do texto levemente menor no celular pra caber bem */
+        line-height: 1.6;
+    }
 }
 
 /* Ajuste da barra de rolagem da mensagem central (super discreta) */
