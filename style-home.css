@@ -202,3 +202,64 @@ body {
     .hero-section h1 { font-size: 3rem; }
     .nav-links { display: none; /* Em um site completo a gente faria um menu hambúrguer aqui */ }
 }
+
+/* =========================================
+   CONTADOR DE TEMPO (TIMER)
+   ========================================= */
+.timer-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.time-box {
+    background: rgba(181, 55, 242, 0.1);
+    border: 1px solid rgba(181, 55, 242, 0.3);
+    border-radius: 12px;
+    padding: 12px 15px;
+    min-width: 75px;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 0 15px rgba(181, 55, 242, 0.15);
+}
+
+.time-box span {
+    font-size: 2rem;
+    font-family: 'Share Tech Mono', monospace; /* Fonte digital */
+    font-weight: 600;
+    color: #fff;
+    text-shadow: 0 0 10px var(--neon-pink);
+    display: block;
+}
+
+.time-box p {
+    font-size: 0.75rem;
+    color: #ccc;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 5px;
+}
+
+/* Ajuste perfeito para a tela do celular */
+@media (max-width: 768px) {
+    .timer-container { gap: 8px; }
+    .time-box { padding: 10px; min-width: 65px; }
+    .time-box span { font-size: 1.5rem; }
+    .time-box p { font-size: 0.65rem; }
+}
+
+/* =========================================
+   CURSOR CUSTOMIZADO NEON (APENAS PARA PC)
+   ========================================= */
+/* A regra 'pointer: fine' detecta se a pessoa está usando um Mouse de verdade */
+@media (pointer: fine) {
+    body {
+        /* Um ponto rosa brilhante */
+        cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="6" fill="%23ff3366" filter="drop-shadow(0 0 4px %23ff3366)"/></svg>') 12 12, auto;
+    }
+    
+    a, .glass-card, button, .locked-card {
+        /* Quando passa em cima de um botão, vira um ponto roxo maior */
+        cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="%23b537f2" filter="drop-shadow(0 0 6px %23b537f2)"/></svg>') 12 12, pointer !important;
+    }
+}
