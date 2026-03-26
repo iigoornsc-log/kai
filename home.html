@@ -35,6 +35,12 @@
             <div class="time-box"><span id="t-mins">00</span><p>Minutos</p></div>
             <div class="time-box"><span id="t-secs">00</span><p>Segundos</p></div>
         </div>
+        <div id="relationship-timer" class="timer-container">
+            </div>
+
+        <button id="btn-3d" onclick="pedirPermissaoGiroscopio()" style="margin-top: 25px; background: rgba(181, 55, 242, 0.1); color: #b537f2; border: 1px solid #b537f2; padding: 10px 25px; border-radius: 30px; cursor: pointer; font-family: 'Poppins', sans-serif; transition: all 0.3s;">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> Ativar Efeito 3D
+        </button>
     </header>
 
     <main class="dashboard-grid">
@@ -129,6 +135,54 @@
             document.documentElement.style.setProperty('--tilt-x', `${moveX}px`);
             document.documentElement.style.setProperty('--tilt-y', `${moveY}px`);
         });
+    </script>
+
+    <script>
+        function iniciarGiroscopio() {
+            window.addEventListener("deviceorientation", (event) => {
+                let eixoX = event.gamma; 
+                let eixoY = event.beta;  
+
+                if (eixoX === null || eixoY === null) return;
+
+                if (eixoX > 45) eixoX = 45;
+                if (eixoX < -45) eixoX = -45;
+                if (eixoY > 90) eixoY = 90;
+                if (eixoY < 0) eixoY = 0; 
+
+                let moveX = eixoX * 1.5; 
+                let moveY = (eixoY - 45) * 1.5; 
+
+                document.documentElement.style.setProperty('--tilt-x', `${moveX}px`);
+                document.documentElement.style.setProperty('--tilt-y', `${moveY}px`);
+            });
+        }
+
+        function pedirPermissaoGiroscopio() {
+            // Verifica se é um iPhone moderno que precisa pedir permissão
+            if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+                DeviceOrientationEvent.requestPermission()
+                    .then(permissionState => {
+                        if (permissionState === 'granted') {
+                            iniciarGiroscopio();
+                            document.getElementById('btn-3d').style.display = 'none'; // Some com o botão
+                        } else {
+                            alert("Permissão negada pro 3D :(");
+                        }
+                    })
+                    .catch(console.error);
+            } else {
+                // Se for Android ou PC, só liga direto
+                iniciarGiroscopio();
+                document.getElementById('btn-3d').style.display = 'none';
+            }
+        }
+
+        // Auto-esconder o botão se for Android (pois não precisa de permissão)
+        if (typeof DeviceOrientationEvent === 'undefined' || typeof DeviceOrientationEvent.requestPermission !== 'function') {
+            document.getElementById('btn-3d').style.display = 'none';
+            iniciarGiroscopio(); // Liga automaticamente
+        }
     </script>
 
 </body>
