@@ -101,7 +101,35 @@
 
         setInterval(updateTimer, 1000); // Atualiza a cada 1 segundo
         updateTimer(); // Roda a primeira vez na hora
-    </script> 
+    </script>
+
+    <script>
+        // Escuta o movimento físico do celular
+        window.addEventListener("deviceorientation", (event) => {
+            // Pega o ângulo de inclinação da mão (em graus)
+            let eixoX = event.gamma; // Esquerda/Direita (normalmente -90 a 90)
+            let eixoY = event.beta;  // Frente/Trás (normalmente -180 a 180)
+
+            // Se o aparelho não tiver giroscópio (tipo um PC sem mouse), cancela
+            if (eixoX === null || eixoY === null) return;
+
+            // Limita os valores pra tela não "voar" pra fora se inclinar muito
+            if (eixoX > 45) eixoX = 45;
+            if (eixoX < -45) eixoX = -45;
+            if (eixoY > 90) eixoY = 90;
+            if (eixoY < 0) eixoY = 0; // Evita bugar se virar de cabeça pra baixo
+
+            // Multiplica por uma força pra transformar graus em pixels de movimento
+            let moveX = eixoX * 1.5; 
+            
+            // Subtrai 45 do Y para considerar o ângulo normal que a gente segura o celular lendo
+            let moveY = (eixoY - 45) * 1.5; 
+
+            // Injeta a física direto no CSS em tempo real!
+            document.documentElement.style.setProperty('--tilt-x', `${moveX}px`);
+            document.documentElement.style.setProperty('--tilt-y', `${moveY}px`);
+        });
+    </script>
 
 </body>
 </html>
