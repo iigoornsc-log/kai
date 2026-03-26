@@ -263,3 +263,32 @@ body {
         cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="%23b537f2" filter="drop-shadow(0 0 6px %23b537f2)"/></svg>') 12 12, pointer !important;
     }
 }
+
+/* =========================================
+   MÁGICA 3D: GIROSCÓPIO E PARALLAX
+   ========================================= */
+:root {
+    /* O JS vai injetar os valores aqui em tempo real */
+    --tilt-x: 0px;
+    --tilt-y: 0px;
+}
+
+/* Faz as bolhas de neon do fundo se mexerem conforme o celular inclina */
+.bg-glow {
+    transform: translate(var(--tilt-x), var(--tilt-y));
+    transition: transform 0.1s ease-out; /* Deixa o movimento suave */
+}
+
+/* Faz a sombra e o brilho dos cartões reagirem à luz 3D */
+.glass-card {
+    /* A sombra vai pro lado oposto do movimento pra dar sensação de altura */
+    box-shadow: 
+        calc(var(--tilt-x) * -0.5) calc(var(--tilt-y) * -0.5) 25px rgba(181, 55, 242, 0.15),
+        inset 0 0 10px rgba(255, 255, 255, 0.02);
+}
+
+.locked-card {
+    box-shadow: 
+        calc(var(--tilt-x) * -0.5) calc(var(--tilt-y) * -0.5) 25px rgba(255, 0, 50, 0.15),
+        inset 0 0 10px rgba(255, 255, 255, 0.02);
+}
