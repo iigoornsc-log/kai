@@ -104,24 +104,56 @@
     </script>
 
     <script>
+        // === 2. SCRIPT 2: EFEITO 3D GIROSCÓPIO AGRESSIVO (iPhone e Android) ===
         function iniciarGiroscopio() {
             window.addEventListener("deviceorientation", (event) => {
-                let eixoX = event.gamma; 
-                let eixoY = event.beta;  
+                let eixoX = event.gamma; // Esquerda/Direita
+                let eixoY = event.beta;  // Frente/Trás
 
                 if (eixoX === null || eixoY === null) return;
 
+                // Limita os valores pra tela não "voar" pra fora se inclinar muito
                 if (eixoX > 45) eixoX = 45;
                 if (eixoX < -45) eixoX = -45;
                 if (eixoY > 90) eixoY = 90;
-                if (eixoY < 0) eixoY = 0; 
+                if (eixoY < 0) eixoY = 0; // Evita bugar se virar de cabeça pra baixo
 
-                let moveX = eixoX * 1.5; 
-                let moveY = (eixoY - 45) * 1.5; 
+                // MULTIPLICADORES AGRESSIVOS (De 1.5 para 4)
+                // Transforma graus em pixels de movimento. Menores inclinações geram maiores deslocamentos.
+                let moveX = eixoX * 4; 
+                
+                // Subtrai 45 do Y para considerar o ângulo normal que a gente segura o celular lendo
+                let moveY = (eixoY - 45) * 4; 
 
+                // Injeta a física direto no CSS em tempo real!
                 document.documentElement.style.setProperty('--tilt-x', `${moveX}px`);
                 document.documentElement.style.setProperty('--tilt-y', `${moveY}px`);
             });
+        }
+
+        // ... o resto do script do iPhone (pedirPermissaoGiroscopio)...
+        function pedirPermissaoGiroscopio() {
+            if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+                DeviceOrientationEvent.requestPermission()
+                    .then(permissionState => {
+                        if (permissionState === 'granted') {
+                            iniciarGiroscopio();
+                            document.getElementById('btn-3d').style.display = 'none'; 
+                        } else {
+                            alert("Para a mágica funcionar, você precisa aceitar a permissão! Atualize a página e tente de novo.");
+                        }
+                    })
+                    .catch(console.error);
+            } else {
+                iniciarGiroscopio();
+                document.getElementById('btn-3d').style.display = 'none';
+            }
+        }
+
+        // Esconde o botão e inicia automático se for Android (pois não precisa de permissão)
+        if (typeof DeviceOrientationEvent === 'undefined' || typeof DeviceOrientationEvent.requestPermission !== 'function') {
+            document.getElementById('btn-3d').style.display = 'none';
+            iniciarGiroscopio(); 
         }
 
         function pedirPermissaoGiroscopio() {
