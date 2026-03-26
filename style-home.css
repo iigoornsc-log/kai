@@ -265,7 +265,7 @@ body {
 }
 
 /* =========================================
-   MÁGICA 3D: GIROSCÓPIO E PARALLAX
+   MÁGICA 3D AGRESSIVA: GIROSCÓPIO E PERSPECTIVA
    ========================================= */
 :root {
     /* O JS vai injetar os valores aqui em tempo real */
@@ -273,22 +273,52 @@ body {
     --tilt-y: 0px;
 }
 
-/* Faz as bolhas de neon do fundo se mexerem conforme o celular inclina */
-.bg-glow {
-    transform: translate(var(--tilt-x), var(--tilt-y));
-    transition: transform 0.1s ease-out; /* Deixa o movimento suave */
+/* 1. Define a profundidade para a grade de cartões */
+#main.dashboard-grid {
+    perspective: 1200px; /* Cria a sala 3D para os cartões flutuarem */
 }
 
-/* Faz a sombra e o brilho dos cartões reagirem à luz 3D */
+/* 2. O Cartão de Vidro: Agora com Inclinação e Projeção Neon */
 .glass-card {
-    /* A sombra vai pro lado oposto do movimento pra dar sensação de altura */
+    /* MÁGICA DA INCLINAÇÃO FÍSICA NO CARTÃO */
+    /* rotateX e rotateY agora reagem com intensidade às variáveis */
+    transform: 
+        translate(calc(var(--tilt-x) * 0.1), calc(var(--tilt-y) * 0.1)) /* Move o cartão suavemente */
+        rotateX(calc(var(--tilt-y) * -0.15deg)) /* Inclina para frente/trás */
+        rotateY(calc(var(--tilt-x) * 0.15deg)); /* Inclina para os lados */
+    
+    transition: transform 0.1s ease-out, box-shadow 0.1s ease-out; /* Movimento ultra suave */
+
+    /* MÁGICA DA PROJEÇÃO NEON OFENSIVA */
+    /* A sombra vai com força para o lado oposto do movimento pra dar sensação de altura */
     box-shadow: 
-        calc(var(--tilt-x) * -0.5) calc(var(--tilt-y) * -0.5) 25px rgba(181, 55, 242, 0.15),
+        calc(var(--tilt-x) * -1.5) calc(var(--tilt-y) * -1.5) 30px rgba(181, 55, 242, 0.3), /* Sombra roxa projetada */
         inset 0 0 10px rgba(255, 255, 255, 0.02);
 }
 
-.locked-card {
+/* Efeito Neon ainda mais forte no hover pro PC */
+.glass-card.neon-hover:hover {
     box-shadow: 
-        calc(var(--tilt-x) * -0.5) calc(var(--tilt-y) * -0.5) 25px rgba(255, 0, 50, 0.15),
+        calc(var(--tilt-x) * -2) calc(var(--tilt-y) * -2) 40px rgba(181, 55, 242, 0.5), /* Sombra roxa projetada mais forte */
+        inset 0 0 15px rgba(255, 255, 255, 0.05);
+}
+
+/* O Cartão do Quarto Vermelho com Projeção Neon Vermelha */
+#card-quarto {
+    box-shadow: 
+        calc(var(--tilt-x) * -1.5) calc(var(--tilt-y) * -1.5) 30px rgba(255, 0, 85, 0.3), /* Sombra vermelha projetada */
         inset 0 0 10px rgba(255, 255, 255, 0.02);
+}
+
+#card-quarto:hover {
+    box-shadow: 
+        calc(var(--tilt-x) * -2) calc(var(--tilt-y) * -2) 40px rgba(255, 0, 85, 0.5), /* Sombra vermelha projetada mais forte */
+        inset 0 0 15px rgba(255, 255, 255, 0.05);
+}
+
+/* 3. O Fundo (BG-Glow): Agora se move com força máxima para o Parallax */
+.bg-glow {
+    /* O fundo se move MAIS que os cartões (Parallax) para dar sensação de profundidade infinita */
+    transform: translate(calc(var(--tilt-x) * 0.8), calc(var(--tilt-y) * 0.8));
+    transition: transform 0.1s ease-out; /* Movimento suave */
 }
